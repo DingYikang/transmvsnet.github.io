@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-180733097-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-180733097-1');
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <style>
+  .section-title {
+    font-family: "Lato"
+  }
+  .authors {
+    font-family: "Lato";
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    font-family: "Lato";
+  }
+  </style>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>TransMVSNet: Global Context-aware Multi-view Stereo <br> Network with Transformers</h2>
+            <h4 style="color:#5a6268;">CVPR 2022</h4>
+            <hr>
+            <h6> <a href="https://github.com/DingYikang/" target="_blank">Yikang Ding</a><sup>2*</sup>, 
+              <a href="https://github.com/wtyuan96/" target="_blank">Wentao Yuan</a><sup>3*</sup>, 
+              <a href="https://qt-zhu.github.io/" target="_blank">Qingtian Zhu</a><sup>3*</sup>, 
+              <a href="https://scholar.google.com/citations?user=X1Sa_GYAAAAJ&hl=zh-CN/" target="_blank">Haotian Zhang</a><sup>1</sup>, 
+              <a href="https://xiangyueliu.github.io/" target="_blank">Xiangyue Liu</a><sup>1</sup>, 
+              Yuanjiang Wang<sup>1</sup>, 
+              <a href="http://www.liuxiao.org/aboutme/" target="_blank">Xiao Liu</a><sup>1</sup></h6>
+            <p>
+                <sup>1</sup>Megvii Research &nbsp;&nbsp;
+                <sup>2</sup>Tsinghua University &nbsp;&nbsp;
+                <sup>3</sup>Peking University &nbsp;&nbsp;  <br>
+                <sup>*</sup> denotes equal contributions
+                </p>
+            <div class="row justify-content-center">
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://openaccess.thecvf.com/content/CVPR2022/papers/Ding_TransMVSNet_Global_Context-Aware_Multi-View_Stereo_Network_With_Transformers_CVPR_2022_paper.pdf" role="button"  target="_blank">
+                    <i class="fa fa-file"></i> Paper</a> </p>
+              </div>
+              <div class="column">
+                <p class="mb-5"><a class="btn btn-large btn-light" href="https://openaccess.thecvf.com/content/CVPR2022/supplemental/Ding_TransMVSNet_Global_Context-Aware_CVPR_2022_supplemental.pdf" role="button"  target="_blank">
+                  <i class="fa fa-file"></i> Supp</a> </p>
+            </div>
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://github.com/MegviiRobot/TransMVSNet" role="button"  target="_blank">
+                    <i class="fa fa-github-alt"></i> Code</a> </p>
+              </div>
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://github.com/MegviiRobot/TransMVSNet/releases/tag/DTU_ply" role="button">
+                    <i class="fa fa-database"></i> Data</a> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/teasor.png" alt="teasor" height="60%">
+          <p class="text-justify">In this paper, we present TransMVSNet, based on our exploration of feature matching in multi-view stereo (MVS). We analogize MVS back to its nature of a feature matching task and therefore propose a powerful Feature Matching Transformer (FMT) to leverage intra- (self-) and inter- (cross-) attention to aggregate long-range context information within and across images.  
+            To facilitate a better adaptation of the FMT, we leverage an Adaptive Receptive Field (ARF) module to ensure a smooth transit in scopes of features and bridge different stages with a feature pathway to pass transformed features and gradients across different scales. 
+            In addition, we apply pair-wise feature correlation to measure similarity between features, and adopt ambiguity-reducing focal loss to strengthen the supervision. To the best of our knowledge, TransMVSNet is the first attempt to leverage Transformer into the task of MVS.
+            As a result, our method achieves state-of-the-art performance on <a href="http://roboimagedata.compute.dtu.dk/?page_id=36/" target="_blank">DTU dataset</a>, 
+            <a href="https://www.tanksandtemples.org/leaderboard/" target="_blank">Tanks and Temples benchmark</a>, 
+            and <a href="https://github.com/YoYo000/BlendedMVS/" target="_blank">BlendedMVS dataset</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Architecture of FMT</h3>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="images/FMT.png" alt="FMT" height="60%">
+          <p class="text-justify">
+            Different from a typical one-to-one matching task between two views, 
+            MVS tackles a one-to-many matching problem, where context information of all views should be considered simultaneously. 
+            To this end, we propose the FMT to capture long-range context information within and across images.
+            The architecture of FMT is illustrated above. 
+            We follow <a href="https://github.com/magicleap/SuperGluePretrainedNetwork/" target="_blank">SuperGlue</a> and add positional encoding, 
+            which implicitly enhances positional consistency and makes FMT robust to feature maps with different resolutions.
+            Each view's corresponding flattened feature map is processed by Na attention blocks sequentially. 
+            Within each attention block, the reference feature and each source feature firstly compute intra-attention with shared weights, 
+            where all features are updated with their respective embedded global context information.
+            Afterwards, the unidirectional inter-attention is performed, with which is updated according to retrieved information from the reference feature.
+          </p>
+          <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Comparison results on Tanks and Temples Benchmark</h4>
+            <img class="img-fluid" src="images/TnT-score.png" alt="tnt-score">
+            <br>
+            <img class="img-fluid" src="images/TnT-compare.png" alt="tnt-compare">
+            <br>
+            <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Evolution of feature maps via FMT</h4>
+            <img class="img-fluid" src="images/feature-evo.png" alt="fea-evo">
+            <br>
+            <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Visualization of intra- and inter-attention weights</h4>
+            <img class="img-fluid" src="images/att-weights.png" alt="att">
+            <br>
+            <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Point clouds of  DTU evaluation set</h4>
+            <img class="img-fluid" src="images/DTU-pcd.png" alt="dtu-pcd">
+            <br>
+            <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Point clouds of  Tanks and Temples Benchmark</h4>
+            <img class="img-fluid" src="images/tnt-pcd.png" alt="tnt-pcd">
+            <br>
+            <h4 style="margin-top:20px; margin-bottom:20px; color:#717980">Point clouds of  BlendedMVS evaluation set</h4>
+            <img class="img-fluid" src="images/bld-pcd.png" alt="bld-pcd">
+            <br>      
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+  <footer class="text-center">
+	  <div class="container">
+        <div class="row ">
+          <div class="col-12">
+			<h2>Citation</h2>
+			  <hr style="margin-top:0px">
+			  <div class="bibtexsection">
+    @InProceedings{Ding_2022_TransMVSNet,
+    author={Ding, Yikang and Yuan, Wentao and Zhu, Qingtian and Zhang, Haotian and Liu, Xiangyue and <br>      Wang, Yuanjiang and Liu, Xiao},
+    title={TransMVSNet: Global Context-Aware Multi-View Stereo Network With Transformers},
+    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month={June},
+    year={2022},
+    pages={8585-8594}
+    }
+			  </div>
+			  <hr>
+		</div>
+        </div>
+      </div>
+    </footer>
+
+  <footer class="text-center" style="margin-bottom:10px">
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the website template.
+  </footer>
+
+</body>
+</html>
